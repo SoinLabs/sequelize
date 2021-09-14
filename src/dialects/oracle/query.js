@@ -534,7 +534,7 @@ class Query extends AbstractQuery {
               returnValue[match[1]] = rows[0][match[1].toUpperCase()];
               return returnValue;
             }
-            return { count: rows[0].COUNT };
+            return { count: rows[0].count };
           }
           let finalRows = [];
           const rowKeys = Object.keys(rows[0]);
@@ -662,7 +662,7 @@ class Query extends AbstractQuery {
 
       result = this.handleSelectQuery(data.rows);
     } else if (this.isCallQuery()) {
-      result = data.rows[0];
+      result = data.rows ? data.rows[0] : [];
     } else if (this.isUpdateQuery()) {
       result = [result];
     } else if (this.isBulkUpdateQuery()) {
