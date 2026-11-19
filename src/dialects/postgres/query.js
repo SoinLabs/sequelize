@@ -279,6 +279,7 @@ class Query extends AbstractQuery {
           this.isInsertQuery()
           && !this.isUpsertQuery()
           && rowCount === 0
+          // SOIN pblanco - SET-2024: Evitar que Sequelize lance un error falso cuando se inserta en una tabla particionada de Postgres.
           && (this.options && (!this.options.isPartitioned || this.options.isPartitioned === false))) {
           throw new sequelizeErrors.EmptyResultError();
         }
